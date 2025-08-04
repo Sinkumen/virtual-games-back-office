@@ -2,12 +2,16 @@ import React, { memo, useEffect } from "react";
 import { getDarkColor } from "@/utils/game";
 import AppButton from "../AppButton";
 import Image from "next/image";
-import Lottie from "lottie-react";
 import lottieData from "../../../public/lottie/lost.json";
 import { playAudio } from "@/utils/audio";
 import AppText from "../AppText";
 import confetti from "canvas-confetti";
 import { FaStar } from "react-icons/fa6";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 
 const GREEN = 35;
 const RED = 47;

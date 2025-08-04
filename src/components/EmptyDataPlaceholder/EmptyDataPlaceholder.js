@@ -1,6 +1,10 @@
-import Lottie from "lottie-react";
 import React from "react";
 import animationData from "../../../public/lottie/emptyData.json";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 
 const EmptyDataPlaceholder = ({
   large,
