@@ -1,4 +1,8 @@
-import { ABOL_TENANT_ID, SKY_TENANT_ID } from "@/constants/tenant";
+import {
+  ABOL_TENANT_ID,
+  SCORE_TENANT_ID,
+  SKY_TENANT_ID,
+} from "@/constants/tenant";
 
 /**
  *
@@ -36,4 +40,15 @@ export const getAppLogo = () => {
       authHeight: 100,
     }
   );
+};
+
+export const getAppName = () => {
+  const tenantId = process.env.NEXT_PUBLIC_TENANT_ID;
+
+  const tenantNames = {
+    [ABOL_TENANT_ID]: "Admin - Abol Games",
+    [SCORE_TENANT_ID]: "Admin - Score Games",
+  };
+
+  return tenantNames[tenantId] || "Bingo";
 };

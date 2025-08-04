@@ -4,6 +4,7 @@ import PageManager from "@/components/PageManager";
 import { ABOL_TENANT_ID, SKY_TENANT_ID } from "@/constants/tenant";
 import ToastContextProvider from "@/contexts/ToastContext/ToastContextProvider";
 import "@/styles/globals.css";
+import { getAppName } from "@/utils/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { CookiesProvider } from "react-cookie";
@@ -33,6 +34,7 @@ const importTenantStyles = (tenantId, setThemeLoaded) => {
 };
 
 export default function App({ Component, pageProps }) {
+  const appName = getAppName();
   const tenantId = process.env.NEXT_PUBLIC_TENANT_ID;
 
   const [themeLoaded, setThemeLoaded] = useState(false);
@@ -58,16 +60,19 @@ export default function App({ Component, pageProps }) {
     },
   });
   return (
-    <NoSSRWrapper>
-      <CookiesProvider>
-        <QueryClientProvider client={queryClient}>
-          <ToastContextProvider>
-            <PageManager>
-              <Component {...pageProps} />
-            </PageManager>
-          </ToastContextProvider>
-        </QueryClientProvider>
-      </CookiesProvider>
-    </NoSSRWrapper>
+    <>
+      <title>{appName}</title>
+      <NoSSRWrapper>
+        <CookiesProvider>
+          <QueryClientProvider client={queryClient}>
+            <ToastContextProvider>
+              <PageManager>
+                <Component {...pageProps} />
+              </PageManager>
+            </ToastContextProvider>
+          </QueryClientProvider>
+        </CookiesProvider>
+      </NoSSRWrapper>
+    </>
   );
 }

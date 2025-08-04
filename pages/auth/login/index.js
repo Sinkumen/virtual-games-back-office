@@ -5,7 +5,7 @@ const LoginPage = () => {
   return (
     <>
       <Head>
-        <title>Bingo - Sign In</title>
+        <title>Abol Admin - Sign In</title>
       </Head>
       <Login />
     </>
