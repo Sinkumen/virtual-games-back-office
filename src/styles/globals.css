@@ -1,0 +1,116 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../.flowbite-react/class-list.json";
+@import "flowbite/src/themes/default";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Regular.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Light.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-SemiBold.otf") format("opentype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Urbanist";
+  src: url("/fonts/Urbanist-Black.otf") format("opentype");
+  font-weight: 900;
+}
+
+@theme {
+  --font-display: "Urbanist", "sans-serif";
+
+  --color-primary: #048007;
+  --color-game-primary: #048007;
+  --color-primary-light: #0abd05;
+  --color-secondary: #e4e7eb;
+
+  --color-b-light: #00acff;
+  --color-b-dark: #0566ff;
+  --color-i-light: #fddc00;
+  --color-i-dark: #fe9300;
+  --color-n-light: #0abd05;
+  --color-n-dark: #058604;
+  --color-g-light: #fb2223;
+  --color-g-dark: #d1060a;
+  --color-o-light: #804693;
+  --color-o-dark: #683390;
+
+  --breakpoint-xs: 450px;
+  --breakpoint-1xs: 410px;
+  --breakpoint-2xs: 350px;
+  --breakpoint-3xs: 300px;
+}
+
+.no-spinners::-webkit-inner-spin-button,
+.no-spinners::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spinners {
+  -moz-appearance: textfield;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px !important; /* Thinner scrollbar */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; /* Gray-400 equivalent */
+  border-radius: 4px; /* Rounded edges */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #4b5563; /* Gray-600 for hover */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f3f4f6; /* Gray-100 equivalent */
+}
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af #f3f4f6; /* thumb track */
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable,
+  .printable * {
+    visibility: visible;
+  }
+  .printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none;
+  }
+}

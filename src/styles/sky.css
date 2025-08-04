@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../.flowbite-react/class-list.json";
+@import "flowbite/src/themes/default";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #028dd4;
+  --color-game-primary: #028dd4;
+  --color-primary-light: #0ab5f2;
+
+  --breakpoint-xs: 450px;
+  --breakpoint-1xs: 410px;
+  --breakpoint-2xs: 350px;
+  --breakpoint-3xs: 300px;
+}

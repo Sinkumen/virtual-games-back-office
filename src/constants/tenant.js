@@ -1,0 +1,2 @@
+export const ABOL_TENANT_ID = "684eb070ec7d90413c27e602";
+export const SKY_TENANT_ID = "685121ff693215e16be1d185";
