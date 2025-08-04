@@ -5,7 +5,7 @@ import { useUserContext } from "@/contexts/UserContext/UserContextProvider";
 const fetchOverview = async (filters) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/overview?limit=5&startDate=${filters.startDate}&endDate=${filters.endDate}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/overview?limit=5&startDate=${filters.startDate}&endDate=${filters.endDate}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data: filters,
   };
@@ -23,7 +23,7 @@ const fetchTopPlayers = async (filters) => {
   };
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/top-players`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/top-players`,
     headers: { "Access-Control-Allow-Origin": "*" },
     params,
   };
@@ -39,7 +39,7 @@ const fetchTopReferrers = async (filters) => {
   };
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/top-referrals`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/top-referrals`,
     headers: { "Access-Control-Allow-Origin": "*" },
     params,
   };
@@ -57,7 +57,7 @@ const fetchTransactions = async (filters) => {
   };
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/top-transactions`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/top-transactions`,
     headers: { "Access-Control-Allow-Origin": "*" },
     params,
   };

@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const createCashier = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -15,7 +15,7 @@ const createCashier = async (data) => {
 const updateCashier = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/${data.id}`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -25,7 +25,7 @@ const updateCashier = async (data) => {
 const getCashiers = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user?role=cashier`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user?role=cashier`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -35,7 +35,7 @@ const getCashiers = async () => {
 const fetchCashierReport = async (page, limit, filters, sortBy, order) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/cashiers?page=${page}&limit=${limit}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/cashiers?page=${page}&limit=${limit}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data: filters,
   };
@@ -46,7 +46,7 @@ const fetchCashierReport = async (page, limit, filters, sortBy, order) => {
 const refillCashierBalance = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/updateBalance/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/updateBalance/${data.id}`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };

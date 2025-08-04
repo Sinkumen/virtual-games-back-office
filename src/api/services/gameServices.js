@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const getOnlineBingoCards = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/bingo-card`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/bingo-card`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -14,7 +14,7 @@ const getOnlineBingoCards = async () => {
 const getActiveRetailBingoCards = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/card-cluster/activeCluster`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/card-cluster/activeCluster`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -24,7 +24,7 @@ const getActiveRetailBingoCards = async () => {
 const regenerateCards = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/bingo-card/swapCards`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/bingo-card/swapCards`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -35,7 +35,7 @@ const regenerateCards = async (data) => {
 const getCurrentGame = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/game/currentCashierGame`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/game/currentCashierGame`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -45,7 +45,7 @@ const getCurrentGame = async () => {
 const createGame = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/game`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/game`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -56,7 +56,7 @@ const createGame = async (data) => {
 const drawNumber = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/game/draw/${data._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/game/draw/${data._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -66,7 +66,7 @@ const drawNumber = async (data) => {
 const endGame = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/game/end/${data._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/game/end/${data._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -76,7 +76,7 @@ const endGame = async (data) => {
 const checkWinner = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/game/check-winner/${data?._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/game/check-winner/${data?._id}`,
     data: data?.payload,
     headers: { "Access-Control-Allow-Origin": "*" },
   };

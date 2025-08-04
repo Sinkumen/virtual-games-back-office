@@ -9,12 +9,10 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import AppBar from "./AppBar";
 import Sidebar from "./Sidebar";
 import { useUserContext } from "@/contexts/UserContext/UserContextProvider";
-import { useGameContext } from "@/contexts/GameContext/GameContextProvider";
 
 const MainLayoutLight = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useUserContext();
-  const { isGameStarted } = useGameContext();
 
   const noSidebar = !user?.role || user?.role === "cashier";
 
@@ -73,7 +71,7 @@ const MainLayoutLight = ({ children }) => {
                       </button>
                     </div>
                   </TransitionChild>
-                  {/* Sidebar component, swap this element with another sidebar if you like */}
+
                   <Sidebar mobile={true} />
                 </DialogPanel>
               </TransitionChild>
@@ -82,17 +80,14 @@ const MainLayoutLight = ({ children }) => {
         </Transition.Root>
       )}
 
-      {/* Static sidebar for desktop */}
       {!noSidebar && (
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
           <Sidebar />
         </div>
       )}
       <div className={!noSidebar ? "lg:pl-72" : ""}>
-        {!isGameStarted && (
-          <AppBar setSidebarOpen={setSidebarOpen} noSidebar={noSidebar} />
-        )}
+        <AppBar setSidebarOpen={setSidebarOpen} noSidebar={noSidebar} />
+
         <main className="p-3 xl:p-6">
           <div>{children}</div>
         </main>

@@ -32,10 +32,14 @@ const Login = () => {
         const decoded = jwtDecode(token);
         const expDate = new Date(decoded.exp * 1000);
 
-        setCookies("authentication_token", token, {
-          path: "/",
-          expires: expDate,
-        });
+        if (user?.role !== "cashier") {
+          setCookies("authentication_token", token, {
+            path: "/",
+            expires: expDate,
+          });
+        } else {
+          showMessage("Invalid username or password", { type: ERROR });
+        }
       },
       onError: (error) => {
         showMessage(error.message, { type: ERROR });

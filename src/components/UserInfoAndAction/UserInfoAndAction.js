@@ -5,18 +5,14 @@ import {
   MenuItems,
   Transition,
 } from "@headlessui/react";
-import { jwtDecode } from "jwt-decode";
-import React, { Fragment, useContext, useState } from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import { MdEdit, MdLogout, MdMoney, MdMoreVert } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import { useQueryClient } from "@tanstack/react-query";
-import UserContext from "@/contexts/UserContext";
 
 import { useUserContext } from "@/contexts/UserContext/UserContextProvider";
 import Image from "next/image";
-import CashierBalance from "../Cashiers/CashierBalance";
 import RoleWrapper from "../RoleWrapper";
-import CashierReport from "../Cashiers/CashierReport";
 
 const UserInfoAndAction = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,14 +38,6 @@ const UserInfoAndAction = () => {
 
   return (
     <div className="flex gap-2">
-      <RoleWrapper allowedRoles={["cashier"]}>
-        {user && <CashierBalance />}
-      </RoleWrapper>
-
-      <RoleWrapper allowedRoles={["cashier"]}>
-        <CashierReport />
-      </RoleWrapper>
-
       <Menu>
         {({ open }) => {
           return (

@@ -9,7 +9,7 @@ const getPlayers = async (filters) => {
   };
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/user/get-tenant-users`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/user/get-tenant-users`,
     headers: { "Access-Control-Allow-Origin": "*" },
     params,
   };
@@ -25,7 +25,7 @@ const getPlayerTransaction = async (filters) => {
   };
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/user/user-transactions`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/user/user-transactions`,
     headers: { "Access-Control-Allow-Origin": "*" },
     params,
   };
@@ -36,7 +36,7 @@ const getPlayerTransaction = async (filters) => {
 const refillPlayerBalance = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/user/update-user-balance`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/user/update-user-balance`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -46,7 +46,7 @@ const refillPlayerBalance = async (data) => {
 const updateUserStatus = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/user/set-active`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/user/set-active`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };

@@ -25,20 +25,11 @@ const UserContextProvider = ({ children }) => {
   if (error) {
     return <GetUserDetailsFailed />;
   }
-  const isCashier = user?.role === "cashier";
+
   const isAgent = user?.role === "agent";
 
   if (isAgent && !router.pathname.includes("/manage")) {
     router.push("/manage/shops");
-    return <MainLoader />;
-  }
-  if (isCashier && !router.pathname.includes("/playground")) {
-    router.push("/playground");
-    return <MainLoader />;
-  }
-
-  if (!isCashier && router.pathname.includes("/playground")) {
-    router.push("/");
     return <MainLoader />;
   }
 

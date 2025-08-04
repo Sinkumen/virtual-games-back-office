@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const getRooms = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/room`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/room`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -14,7 +14,7 @@ const getRooms = async () => {
 const createRoom = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/room`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/room`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -25,7 +25,7 @@ const createRoom = async (data) => {
 const updateRoom = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/room/${data?._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/room/${data?._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };

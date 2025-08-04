@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const signIn = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/signin`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/signin`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -15,7 +15,7 @@ const signIn = async (data) => {
 const getMe = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/me`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/me`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -25,7 +25,7 @@ const getMe = async () => {
 const updateUser = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/${data.id}`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -36,7 +36,7 @@ const updateUser = async (data) => {
 const getBalance = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/balance`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/balance`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -46,7 +46,7 @@ const getBalance = async () => {
 const changePassword = async (data) => {
   const options = {
     method: "patch",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/change-password`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/change-password`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };

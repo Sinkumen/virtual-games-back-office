@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const fetchAgents = async (page, limit, sortBy, order) => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user?role=agent&page=${page}&limit=${limit}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user?role=agent&page=${page}&limit=${limit}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -14,7 +14,7 @@ const fetchAgents = async (page, limit, sortBy, order) => {
 const fetchAgentReport = async (page, limit, filters, sortBy, order) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/agents?page=${page}&limit=${limit}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/agents?page=${page}&limit=${limit}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data: filters,
   };
@@ -25,7 +25,7 @@ const fetchAgentReport = async (page, limit, filters, sortBy, order) => {
 const createAgent = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -36,7 +36,7 @@ const createAgent = async (data) => {
 const updateAgent = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/dashboard-user/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/dashboard-user/${data.id}`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };

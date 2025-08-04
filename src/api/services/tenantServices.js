@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const getOnlineTenantSetting = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/tenant/onlineSettings`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/tenant/onlineSettings`,
   };
 
   return await makeApiRequest(options);
@@ -13,7 +13,7 @@ const getOnlineTenantSetting = async () => {
 const updateOnlineTenantSetting = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/tenant/onlineSettings`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/tenant/onlineSettings`,
     data,
   };
 

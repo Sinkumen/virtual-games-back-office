@@ -4,7 +4,7 @@ import makeApiRequest from "../makeApiRequest";
 const getShops = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/shop`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/shop`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -14,7 +14,7 @@ const getShops = async () => {
 const fetchShopReport = async (page, limit, filters, sortBy, order) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/report/shops?page=${page}&limit=${limit}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/report/shops?page=${page}&limit=${limit}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data: filters,
   };
@@ -25,7 +25,7 @@ const fetchShopReport = async (page, limit, filters, sortBy, order) => {
 const createShop = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/shop`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/shop`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -36,7 +36,7 @@ const createShop = async (data) => {
 const updateShop = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/shop/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/shop/${data.id}`,
     data,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
@@ -47,7 +47,7 @@ const updateShop = async (data) => {
 const getShopCardVariants = async (data) => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/card-cluster/all?shopId=${data._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/card-cluster/all?shopId=${data._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -57,7 +57,7 @@ const getShopCardVariants = async (data) => {
 const updateShopCardVariant = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/card-cluster/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/card-cluster/${data.id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -70,7 +70,7 @@ const activateShopCardVariant = async (data) => {
   delete data.shopId;
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/card-cluster/shops/${shopId}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/card-cluster/shops/${shopId}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };

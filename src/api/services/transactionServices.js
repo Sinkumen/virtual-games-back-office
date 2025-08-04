@@ -16,7 +16,7 @@ const fetchPaymentRequests = async (filters) => {
 
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/transaction-request/all?${params}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/transaction-request/all?${params}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -26,7 +26,7 @@ const fetchPaymentRequests = async (filters) => {
 const resolvePaymentRequest = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/transaction-request/${data.id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/transaction-request/${data.id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -37,7 +37,7 @@ const resolvePaymentRequest = async (data) => {
 const getDepositAccounts = async () => {
   const options = {
     method: "get",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/account-detail`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/account-detail`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -47,7 +47,7 @@ const getDepositAccounts = async () => {
 const createAccountEntry = async (data) => {
   const options = {
     method: "post",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/account-detail/account-entry`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/account-detail/account-entry`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -58,7 +58,7 @@ const createAccountEntry = async (data) => {
 const updateAccountEntry = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/account-detail/account-entry/${data?._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/account-detail/account-entry/${data?._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
     data,
   };
@@ -69,7 +69,7 @@ const updateAccountEntry = async (data) => {
 const deleteAccountEntry = async (data) => {
   const options = {
     method: "delete",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/account-detail/account-entry/${data?._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/account-detail/account-entry/${data?._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 
@@ -79,7 +79,7 @@ const deleteAccountEntry = async (data) => {
 const verifyTransaction = async (data) => {
   const options = {
     method: "put",
-    url: `${process.env.NEXT_PUBLIC_RETAIL_API}/transaction-request/verify/${data?._id}`,
+    url: `${process.env.NEXT_PUBLIC_ADMIN_API}/transaction-request/verify/${data?._id}`,
     headers: { "Access-Control-Allow-Origin": "*" },
   };
 

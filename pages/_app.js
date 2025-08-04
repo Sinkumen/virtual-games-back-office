@@ -2,7 +2,6 @@ import MainLoader from "@/components/MainLoader";
 import NoSSRWrapper from "@/components/NoSSRWrapper";
 import PageManager from "@/components/PageManager";
 import { ABOL_TENANT_ID, SKY_TENANT_ID } from "@/constants/tenant";
-import GameContextProvider from "@/contexts/GameContext/GameContextProvider";
 import ToastContextProvider from "@/contexts/ToastContext/ToastContextProvider";
 import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -64,9 +63,7 @@ export default function App({ Component, pageProps }) {
         <QueryClientProvider client={queryClient}>
           <ToastContextProvider>
             <PageManager>
-              <GameContextProvider>
-                <Component {...pageProps} />
-              </GameContextProvider>
+              <Component {...pageProps} />
             </PageManager>
           </ToastContextProvider>
         </QueryClientProvider>
