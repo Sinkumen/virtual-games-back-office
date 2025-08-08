@@ -27,7 +27,15 @@ const Dashboard = () => {
       title: "Revenue",
       value: `${aggregateOverview?.totalRevenue} Birr`,
       icon: FaMoneyBillTrendUp,
+      // alt: aggregateOverview?.totalRevenue - overview?.totalGiveaway,
+      // altLabel: "Net",
     },
+    {
+      title: "Giveaway",
+      value: `${overview?.totalGiveaway} Birr`,
+      icon: FaMoneyBillTrendUp,
+    },
+
     {
       title: "Total Sales",
       value: `${aggregateOverview?.totalSales} Birr`,
@@ -53,10 +61,12 @@ const Dashboard = () => {
     },
     {
       title: "Total Players",
-      toolTip: "Total Players",
       value: overview?.totalUsers,
-      alt: overview?.totalActiveUsers,
-      altLabel: "Active",
+      icon: FaMoneyBillTrendUp,
+    },
+    {
+      title: "Active Players",
+      value: overview?.totalActiveUsers,
       icon: FaMoneyBillTrendUp,
     },
   ];

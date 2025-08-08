@@ -4,7 +4,7 @@ import React from "react";
 const AggregateCard = ({ aggregateReport }) => {
   return (
     <div
-      className={`grid grid-cols-2 md:grid-cols-3 justify-between ring-1 ring-slate-300 rounded-xl `}
+      className={`grid grid-cols-2 xl:grid-cols-4 justify-between ring-1 ring-slate-300 rounded-xl `}
     >
       {aggregateReport.map((overview, i) => {
         const isLastItem = i === aggregateReport.length - 1;
@@ -17,7 +17,7 @@ const AggregateCard = ({ aggregateReport }) => {
               i > 0 ? (i % 2 === 0 ? "md:border-l" : "border-l") : ""
             } border-slate-300 p-2 md:p-6 ${
               isOddLength && isLastItem
-                ? "max-md:col-span-full max-md:justify-center max-md:items-center max-md:border-b-[1px] max-md:order-first"
+                ? "max-md:col-span-full max-md:justify-center max-md:items-center max-md:border-b-[1px]"
                 : ""
             } ${
               !(isOddLength && isLastItem) &&
