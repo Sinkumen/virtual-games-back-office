@@ -42,6 +42,13 @@ const Dashboard = () => {
       icon: FaMoneyBillTrendUp,
     },
     {
+      title: "Total Games",
+      value: aggregateOverview?.totalGames,
+      alt: aggregateOverview?.averagePlayersPerGame,
+      altLabel: "APG",
+      icon: FaMoneyBillTrendUp,
+    },
+    {
       title: "Total Deposit",
       value: `${overview?.totalApprovedDeposit} Birr`,
       icon: FaMoneyBillTrendUp,
@@ -50,13 +57,6 @@ const Dashboard = () => {
       title: "Total Withdrawals",
       value: `${overview?.totalApprovedWithdrawal} Birr`,
 
-      icon: FaMoneyBillTrendUp,
-    },
-    {
-      title: "Total Games",
-      value: aggregateOverview?.totalGames,
-      alt: aggregateOverview?.averagePlayersPerGame,
-      altLabel: "APG",
       icon: FaMoneyBillTrendUp,
     },
     {
