@@ -1,13 +1,12 @@
 import { useGetPlayers } from "@/api/services/playersServices";
 import AppTable from "@/components/AppTable";
 import ManagePageSkeleton from "@/components/ManagePageSkeleton/ManagePageSkeleton";
-import { Tooltip } from "@mui/material";
 import { truncate } from "lodash";
 import moment from "moment";
 import React, { useState } from "react";
-import PlayerTransactions from "./PlayerTransactions";
-import RefillPlayerBalance from "./RefillPlayerBalance";
-import PlayerActivation from "./PlayerActivation";
+import PlayerTransactions from "./PlayerActions/PlayerTransactions";
+import RefillPlayerBalance from "./PlayerActions/RefillPlayerBalance";
+import PlayerActivation from "./PlayerActions/PlayerActivation";
 import AppInput from "@/components/AppInput";
 import { MdSearch } from "react-icons/md";
 import AppButton from "@/components/AppButton";
@@ -15,6 +14,8 @@ import { parsePhoneNumberWithError } from "libphonenumber-js";
 import AppPagination from "@/components/AppPagination";
 import useToast from "@/hooks/useToast";
 import { ERROR } from "@/constants/toast";
+import AffiliateManager from "./PlayerActions/AffiliateManager";
+import PlayerActions from "./PlayerActions";
 
 const PlayersManagements = () => {
   const { showMessage } = useToast();
@@ -85,11 +86,8 @@ const PlayersManagements = () => {
         Payout: {player.userDetail.withdrawableBalance} Birr
       </p>
     </div>,
-    <div key={player.id} className="flex gap-1 items-center">
-      <PlayerTransactions player={player} />
-      <RefillPlayerBalance player={player} />
-      <PlayerActivation player={player} />
-    </div>,
+
+    <PlayerActions key={player.id} player={player} />,
   ]);
 
   return (

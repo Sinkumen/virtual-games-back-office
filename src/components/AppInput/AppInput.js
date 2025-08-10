@@ -15,6 +15,8 @@ const AppInput = ({
   step = {},
   min,
   max,
+  minLength,
+  maxLength,
   disableAutoComplete = false,
 }) => {
   const inputMode = type === "number" ? "decimal" : "text";
@@ -64,6 +66,8 @@ const AppInput = ({
         onKeyDown={(e) => e.stopPropagation()}
         min={min}
         max={max}
+        minLength={minLength}
+        maxLength={maxLength}
         step={step}
         disabled={disabled}
         defaultValue={defaultValue}

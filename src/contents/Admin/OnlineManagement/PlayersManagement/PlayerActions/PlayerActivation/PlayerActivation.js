@@ -39,16 +39,20 @@ const PlayerActivation = ({ player }) => {
   };
   return (
     <div>
-      <AppButton
-        onClick={toggleDialog}
-        bgColor={player.isActive ? "bg-red-500" : "bg-green-500"}
-      >
+      <button className="w-full cursor-pointer text-sm" onClick={toggleDialog}>
         {player.isActive ? (
-          <FaUserSlash className="text-lg" />
+          <div className="flex items-center gap-2 text-red-600 bg-red-600/10 px-2  py-1 rounded ">
+            <FaUserSlash />
+            <p>Deactivate</p>
+          </div>
         ) : (
-          <FaUser className="text-lg" />
+          <div className="flex items-center gap-2 text-green-600 bg-green-600/10 px-2 py-1 rounded ">
+            <FaUser className="text-lg" />
+            <p>Activate</p>
+          </div>
         )}
-      </AppButton>
+      </button>
+
       <AppDialog
         open={isDialogOpen}
         title="Player Activation"

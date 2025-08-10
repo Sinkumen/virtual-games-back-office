@@ -1,7 +1,7 @@
 import { useGetShopCardVariants } from "@/api/services/shopServices";
 import AppButton from "@/components/AppButton";
-import BingoCard from "@/components/BingoCard";
-import BingoCardsSkeleton from "@/components/BingoCardSkeleton";
+import BingoCard from "@/components/Bingo/BingoCard";
+import BingoCardsSkeleton from "@/components/Bingo/BingoCardSkeleton";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import React, { useEffect, useState } from "react";
 import { MdAdd, MdCheck } from "react-icons/md";

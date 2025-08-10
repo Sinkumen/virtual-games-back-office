@@ -31,14 +31,13 @@ const Dashboard = () => {
       // altLabel: "Net",
     },
     {
-      title: "Giveaway",
-      value: `${overview?.totalGiveaway} Birr`,
-      icon: FaMoneyBillTrendUp,
-    },
-
-    {
       title: "Total Sales",
       value: `${aggregateOverview?.totalSales} Birr`,
+      icon: FaMoneyBillTrendUp,
+    },
+    {
+      title: "Giveaway",
+      value: `${(overview?.totalGiveaway || 0).toFixed(2)} Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {

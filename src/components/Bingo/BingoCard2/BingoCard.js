@@ -1,59 +1,25 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { getDarkColor } from "@/utils/game";
-import AppButton from "../AppButton";
-import Image from "next/image";
-import lottieData from "../../../public/lottie/lost.json";
-import { playAudio } from "@/utils/audio";
-import AppText from "../AppText";
-import confetti from "canvas-confetti";
+import AppText from "../../AppText";
 import { FaStar } from "react-icons/fa6";
-import dynamic from "next/dynamic";
-
-const Lottie = dynamic(() => import("lottie-react"), {
-  ssr: false,
-});
 
 const GREEN = 35;
 const RED = 47;
 
-const firework = () => {
-  const duration = 10000; // 5 seconds
-  const animationEnd = Date.now() + duration;
-  const defaults = {
-    startVelocity: 20, // slower particles
-    spread: 360,
-    ticks: 150, // particles stay longer
-    gravity: 0.6, // slower fall
-    zIndex: 1000,
-  };
+const isWinningCell = (row, col, winningResult) => {
+  if (!winningResult || !winningResult) return false;
 
-  const interval = setInterval(() => {
-    const timeLeft = animationEnd - Date.now();
-
-    if (timeLeft <= 0) {
-      clearInterval(interval);
-      return;
-    }
-
-    const x = Math.random() * 0.8 + 0.1; // avoid edge cutoffs
-    const y = Math.random() * 0.4 + 0.1;
-
-    confetti({
-      ...defaults,
-      particleCount: 60,
-      origin: { x, y },
-      scalar: Math.random() * 0.4 + 0.8, // variation in size
-    });
-  }, 400); // slower bursts
+  return winningResult.some(([r, c]) => r === row && c === col);
 };
 
 const BingoCard = ({
-  card = {},
+  label = 1,
+  card = [],
   result,
   drawnNumbers = [],
   fullScreen,
   showBorder,
-  onComplete,
+  winningCells,
 }) => {
   const headers = [
     { label: "B", bgColor: "bg-gradient-to-b from-[#00ACFF] to-[#0566FF]" },
@@ -66,28 +32,21 @@ const BingoCard = ({
   const isWinningCard = result?.isWinner;
   const resultNumber = isWinningCard ? GREEN : RED;
   const cardColors = getDarkColor(
-    result ? resultNumber : Math.floor(Math.random() * 75) + 1
+    result ? resultNumber : Number(label % 75) || 75
   );
-
-  useEffect(() => {
-    if (result) {
-      if (isWinningCard) {
-        playAudio("/audio/WINNER.mp3");
-        firework();
-      } else {
-        playAudio("/audio/NOT_A_WINNER.mp3");
-      }
-    }
-  }, [card]);
 
   return (
     <div
-      className={`break-inside-avoid flex ${
+      className={`flex ${
         showBorder
           ? `bg-white/50 dark:bg-transparent border-[1px] ${cardColors?.borderColor}`
-          : `bg-white/50`
-      } text-white p-2 rounded-lg text-center justify-center gap-4 relative`}
+          : `bg-white/50 dark:bg-transparent`
+      } text-white p-2 rounded-lg text-center justify-center gap-2 relative`}
     >
+      {/* <div
+        className={`${cardColors.bgGradient} rounded-tl-lg rounded-bl-lg w-[5vw] md:w-[2.5vw]`}
+      /> */}
+
       <div className="rounded-lg overflow-clip">
         <div
           className={`${cardColors.bgTransparent} ${cardColors.borderColor}  border-[1px] rounded-tl-lg rounded-tr-lg justify-center lg:p-2 2xl:py-3`}
@@ -107,10 +66,11 @@ const BingoCard = ({
             ))}
           </div>
         </div>
-        {card?.grid?.map((row, i) => (
+        {card.map((row, i) => (
           <div key={`row-${i}`} className="flex gap-1 my-2">
             {row.map((num, j) => {
               const isSelected = drawnNumbers.includes(num) || num === 0;
+              const isWinning = isWinningCell(i, j, winningCells); // true or false
 
               return (
                 <div
@@ -118,8 +78,10 @@ const BingoCard = ({
                   className={`${
                     isSelected
                       ? cardColors.bgGradient
-                      : cardColors.bgTransparent
-                  } ${cardColors.borderColor} border-[1px] ${
+                      : cardColors.bgTransparent + " dark:bg-transparent"
+                  } ${result && !isWinning ? "opacity-35" : ""} ${
+                    cardColors.borderColor
+                  } border-[1px] ${
                     fullScreen
                       ? "3xs:w-[30px] 3xs:h-[30px]"
                       : "3xs:w-[20px] 3xs:h-[20px] 2xs:w-[25px] 2xs:h-[25px]"
@@ -148,51 +110,11 @@ const BingoCard = ({
             <AppText
               className={`font-bold ${cardColors.textColor} text-base m-1`}
             >
-              # Card {card.label}
+              # Card {label}
             </AppText>
           </div>
         </div>
       </div>
-      {result && (
-        <div className="flex flex-col justify-between items-center text-black pl-4">
-          <p className={`${cardColors.textColor} font-bold text-xl`}>
-            {isWinningCard ? "Winner" : "No a Winner 😭"}
-          </p>
-          {!isWinningCard && (
-            <Lottie
-              animationData={lottieData}
-              style={{ height: 260, width: 250 }}
-              loop={true}
-            />
-          )}
-
-          {isWinningCard && (
-            <div className="flex flex-col items-center">
-              <Image
-                src={`patterns/bingo_winning_pattern_${result.WinningPattern}.svg`}
-                width={170}
-                height={0}
-                alt="winning-pattern"
-              />
-              <p className="font-bold text-n-dark ">WINNING PATTERN</p>
-            </div>
-          )}
-
-          {isWinningCard && (
-            <div className="flex gap-2 items-center">
-              <p className=" text-n-dark text-xl ">Won</p>
-              <p className="font-black text-n-dark text-6xl ">
-                {result?.prize || 0}
-              </p>
-              <p className=" text-n-dark text-xl ">Birr</p>
-            </div>
-          )}
-
-          <AppButton fullWidth onClick={() => onComplete(isWinningCard)}>
-            Done
-          </AppButton>
-        </div>
-      )}
     </div>
   );
 };

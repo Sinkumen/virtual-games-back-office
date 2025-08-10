@@ -5,8 +5,8 @@ import {
 import AppButton from "@/components/AppButton";
 import AppDialog from "@/components/AppDialog";
 import AppInput from "@/components/AppInput";
-import BingoCard from "@/components/BingoCard";
-import BingoCardSkeleton from "@/components/BingoCardSkeleton";
+import BingoCard from "@/components/Bingo/BingoCard";
+import BingoCardSkeleton from "@/components/Bingo/BingoCardSkeleton";
 import { ERROR } from "@/constants/toast";
 import useToast from "@/hooks/useToast";
 import React, { useState } from "react";
