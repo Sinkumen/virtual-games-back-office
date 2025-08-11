@@ -27,7 +27,7 @@ const GameDetailPanel = ({ game }) => {
     players,
     winningCard,
     drawSequence,
-  } = gameDetail;
+  } = gameDetail || {};
 
   const statusColors = {
     cancelled: "bg-red-500 text-white",
@@ -41,7 +41,7 @@ const GameDetailPanel = ({ game }) => {
         <span
           className={` py-1 rounded-full text-sm font-bold ${statusColors[onlineStatus]}`}
         >
-          {onlineStatus.charAt(0).toUpperCase() + onlineStatus.slice(1)}
+          {onlineStatus?.charAt(0).toUpperCase() + onlineStatus?.slice(1)}
         </span>
         <div className="flex items-center gap-4 text-gray-800">
           <span className="flex items-center gap-1 font-semibold">
@@ -53,12 +53,12 @@ const GameDetailPanel = ({ game }) => {
         <span>{commission}% Commission</span>
         <span className="flex items-center gap-1">
           <UserIcon className="h-4 w-4 text-purple-500" /> Players:{" "}
-          {players.length}
+          {players?.length}
         </span>
       </div>
 
       <div>
-        {[...players, ...players]
+        {[...(players || []), ...(players || [])]
           .sort((a, b) => b.isWinner - a.isWinner)
           .map((p, idx) => (
             <div
@@ -101,7 +101,7 @@ const GameDetailPanel = ({ game }) => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-1 max-h-[280px] lg:max-h-[340px] xl:max-h-[400px] mt-2 pb-2 overflow-x-auto">
-            {drawSequence.map((num, idx) => (
+            {drawSequence?.map((num, idx) => (
               <BingoBall key={idx} label={num} />
             ))}
           </div>

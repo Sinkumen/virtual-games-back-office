@@ -89,7 +89,7 @@ const GameHistory = ({ player }) => {
         hideNextButton
         page={filters.page}
         onPageChange={onPageChange}
-        count={pagination?.pages || 0}
+        count={pagination?.totalPages || 0}
         limit={filters.limit}
         onLimitChange={onPageSizeChange}
       />
