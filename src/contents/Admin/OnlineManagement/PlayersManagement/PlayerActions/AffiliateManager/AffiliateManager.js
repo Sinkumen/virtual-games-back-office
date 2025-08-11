@@ -65,7 +65,7 @@ const AffiliateManager = ({ player }) => {
       <Popover className="relative">
         {({ close }) => (
           <>
-            <PopoverButton>
+            <PopoverButton className="focus:outline-none">
               <AppButton>
                 <TbAffiliate className="text-lg" />
               </AppButton>
