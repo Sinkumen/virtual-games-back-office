@@ -18,6 +18,7 @@ const AppInput = ({
   minLength,
   maxLength,
   disableAutoComplete = false,
+  dense,
 }) => {
   const inputMode = type === "number" ? "decimal" : "text";
 
@@ -78,9 +79,9 @@ const AppInput = ({
         name={name}
         type={type}
         required={!!required}
-        className={`w-full  text-sm ring-1 ring-gray-300 rounded-md ${backgroundColor}  flex  py-3 px-4 ${
-          type === "password" ? "font-[sans-serif]" : ""
-        }`}
+        className={`w-full  text-sm ring-1 ring-gray-300 rounded-md ${backgroundColor}  flex  ${
+          dense ? "py-2.5" : "py-3"
+        } px-4 ${type === "password" ? "font-[sans-serif]" : ""}`}
       />
     </div>
   );
