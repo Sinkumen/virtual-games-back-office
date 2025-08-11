@@ -81,7 +81,7 @@ const AppInput = ({
         required={!!required}
         className={`w-full  text-sm ring-1 ring-gray-300 rounded-md ${backgroundColor}  flex  ${
           dense ? "py-2.5" : "py-3"
-        } px-4 ${type === "password" ? "font-[sans-serif]" : ""}`}
+        } px-4 ${type === "password" ? "font-[sans-serif]" : ""} ${className}`}
       />
     </div>
   );
