@@ -44,6 +44,22 @@ const AffiliateManager = ({ player }) => {
     });
   };
 
+  const [anchor, setAnchor] = useState("left start");
+
+  React.useEffect(() => {
+    const updateAnchor = () => {
+      if (window.innerWidth < 768) {
+        setAnchor("bottom");
+      } else {
+        setAnchor("left start");
+      }
+    };
+
+    updateAnchor();
+    window.addEventListener("resize", updateAnchor);
+    return () => window.removeEventListener("resize", updateAnchor);
+  }, []);
+
   return (
     <div>
       <Popover className="relative">
@@ -55,8 +71,8 @@ const AffiliateManager = ({ player }) => {
               </AppButton>
             </PopoverButton>
             <PopoverPanel
-              anchor="left start"
-              className="flex flex-col bg-white shadow-2xl p-3 rounded-md"
+              anchor={anchor}
+              className="flex flex-col bg-white shadow-2xl p-3 rounded-md z-10"
             >
               {referrals.map((referral, index) => (
                 <div key={index} className="mb-2">
