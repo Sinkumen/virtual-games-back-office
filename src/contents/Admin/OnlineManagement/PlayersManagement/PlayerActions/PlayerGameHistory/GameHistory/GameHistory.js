@@ -67,7 +67,9 @@ const GameHistory = ({ player }) => {
         >
           {game.status.replace("_", " ")}
         </div>
-        {game?.provider === "abol" && <GameDetail game={game} />}
+        {game?.provider === "abol" && (
+          <GameDetail game={game} selectedPlayer={player} />
+        )}
       </div>,
     ];
   });

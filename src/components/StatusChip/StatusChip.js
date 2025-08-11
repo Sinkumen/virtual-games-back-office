@@ -8,6 +8,10 @@ const StatusChip = ({ status }) => {
     approved: "bg-green-200 text-green-800",
     failed: "bg-red-200 text-red-800",
     declined: "bg-red-200 text-red-800",
+    won: "bg-green-200 text-green-800",
+    lost: "bg-red-200 text-red-800",
+    cancelled: "bg-gray-200 text-gray-800",
+    completed: "bg-blue-200 text-blue-800",
   };
 
   return (

@@ -3,6 +3,7 @@ import AppModal from "@/components/AppModal";
 import React, { useState } from "react";
 import { FaGamepad } from "react-icons/fa6";
 import GameHistory from "./GameHistory";
+import AppButton from "@/components/AppButton";
 
 const PlayerGameHistory = ({ player }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,13 +13,9 @@ const PlayerGameHistory = ({ player }) => {
 
   return (
     <div>
-      <button
-        onClick={toggleModal}
-        className="flex text-sm w-full items-center gap-2 rounded py-1 px-2 hover:bg-gray-200"
-      >
-        <FaGamepad />
-        Game History
-      </button>
+      <AppButton onClick={toggleModal}>
+        <FaGamepad className="text-lg" />
+      </AppButton>
 
       <AppModal
         className={

@@ -11,9 +11,8 @@ const PlayerActions = ({ player }) => {
   return (
     <div key={player.id} className="relative inline-block text-left">
       <div className="flex gap-1 items-center">
-        <AffiliateManager player={player} />
-
-        <RefillPlayerBalance player={player} />
+        <PlayerTransactions player={player} />
+        <PlayerGameHistory player={player} />
 
         <Menu>
           <MenuButton className={"bg-gray-200 hover:bg-gray-300 rounded p-2"}>
@@ -25,12 +24,12 @@ const PlayerActions = ({ player }) => {
           >
             <div className="p-1">
               <MenuItem>
-                <PlayerTransactions player={player} />
+                <AffiliateManager player={player} />
               </MenuItem>
             </div>
             <div className="p-1">
               <MenuItem>
-                <PlayerGameHistory player={player} />
+                <RefillPlayerBalance player={player} />
               </MenuItem>
             </div>
 

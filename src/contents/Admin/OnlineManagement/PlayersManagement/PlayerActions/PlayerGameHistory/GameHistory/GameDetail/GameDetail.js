@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { MdGames } from "react-icons/md";
 import GameDetailPanel from "./GameDetailPanel";
 
-const GameDetail = ({ game }) => {
+const GameDetail = ({ game, selectedPlayer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
@@ -21,7 +21,7 @@ const GameDetail = ({ game }) => {
         isOpen={isOpen}
         closeModal={toggleModal}
       >
-        <GameDetailPanel game={game} />
+        <GameDetailPanel game={game} selectedPlayer={selectedPlayer} />
       </AppModal>
     </div>
   );

@@ -65,10 +65,11 @@ const AffiliateManager = ({ player }) => {
       <Popover className="relative">
         {({ close }) => (
           <>
-            <PopoverButton className="focus:outline-none">
-              <AppButton>
-                <TbAffiliate className="text-lg" />
-              </AppButton>
+            <PopoverButton className="focus:outline-none w-full">
+              <button className="flex text-sm w-full items-center gap-2 rounded py-1 px-2 hover:bg-gray-200">
+                <TbAffiliate />
+                Affiliate
+              </button>
             </PopoverButton>
             <PopoverPanel
               anchor={anchor}

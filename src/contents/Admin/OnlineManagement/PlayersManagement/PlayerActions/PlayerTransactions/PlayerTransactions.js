@@ -11,13 +11,9 @@ const PlayerTransactions = ({ player }) => {
   };
   return (
     <div>
-      <button
-        onClick={toggleModal}
-        className="flex text-sm w-full items-center gap-2 rounded py-1 px-2 hover:bg-gray-200"
-      >
-        <FaReceipt />
-        Transactions
-      </button>
+      <AppButton onClick={toggleModal}>
+        <FaReceipt className="text-lg" />
+      </AppButton>
 
       <AppModal
         className={

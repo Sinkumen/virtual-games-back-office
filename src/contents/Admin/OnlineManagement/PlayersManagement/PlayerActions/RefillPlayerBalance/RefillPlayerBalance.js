@@ -30,10 +30,11 @@ const RefillPlayerBalance = ({ player }) => {
     <Popover className="relative">
       {({ close }) => (
         <>
-          <PopoverButton>
-            <AppButton>
-              <FaGasPump className="text-lg" />
-            </AppButton>
+          <PopoverButton className="w-full">
+            <button className="flex text-sm w-full items-center gap-2 rounded py-1 px-2 hover:bg-gray-200">
+              <FaGasPump />
+              Refill Balance
+            </button>
           </PopoverButton>
           <PopoverPanel
             anchor="bottom"
