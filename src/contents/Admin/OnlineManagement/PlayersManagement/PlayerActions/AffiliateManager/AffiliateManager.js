@@ -8,7 +8,8 @@ import { FaTelegram } from "react-icons/fa6";
 import { MdCancel, MdCopyAll } from "react-icons/md";
 import { TbAffiliate } from "react-icons/tb";
 import { FaEdit, FaShareAlt } from "react-icons/fa";
-import { IoTicket } from "react-icons/io5";
+import { IoAdd, IoTicket } from "react-icons/io5";
+import { Divider } from "@mui/material";
 
 const AffiliateManager = ({ player }) => {
   const { showMessage } = useToast();
@@ -85,40 +86,54 @@ const AffiliateManager = ({ player }) => {
             >
               {referrals.map((referral, index) => (
                 <div key={index} className="mb-2">
-                  <div className="flex justify-between gap-2   ">
+                  <div className="flex gap-2   ">
                     <div className="flex items-center px-2 py-1.5 bg-primary/20 rounded cursor-pointer">
                       <referral.Icon className="text-xl text text-primary" />
                     </div>
-                    <div className="bg-gray-200 rounded w-full px-2 py-1 max-w-[360px] overflow-auto">
-                      <p
-                        className={`${
-                          referral?.prefix
-                            ? "text-sm font-semibold"
-                            : "uppercase  font-bold"
-                        } truncate`}
-                      >
-                        {referral?.prefix}
-                        {referral?.code}
-                      </p>
-                    </div>
-
-                    <div className="flex gap-1">
-                      <button
-                        onClick={() => handleCopyToClipboard(referral)}
-                        className="flex items-center px-2 py-1.5 bg-primary/20 rounded cursor-pointer"
-                      >
-                        <MdCopyAll className="text-xl text text-primary" />
-                      </button>
-
-                      {!referral?.prefix && (
-                        <button
-                          onClick={() => setEditPromoCode(true)}
-                          className="px-2 py-1.5 bg-primary/20 rounded cursor-pointer"
+                    {referral?.code ? (
+                      <div className="bg-gray-200 rounded w-full px-2 py-1 max-w-[360px] overflow-auto">
+                        <p
+                          className={`${
+                            referral?.prefix
+                              ? "text-sm font-semibold"
+                              : "uppercase  font-bold"
+                          } truncate`}
                         >
-                          <FaEdit className="text-xl text-primary" />
-                        </button>
-                      )}
-                    </div>
+                          {referral?.prefix}
+                          {referral?.code}
+                        </p>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => setEditPromoCode(true)}
+                        className="flex items-center text-primary px-2 py-1.5 bg-primary/10 rounded cursor-pointer"
+                      >
+                        <IoAdd className="text-xl" />
+                        <p className="text-sm ">Create Promo Code</p>
+                      </button>
+                    )}
+
+                    {referral?.code && (
+                      <div className="flex gap-1">
+                        {
+                          <button
+                            onClick={() => handleCopyToClipboard(referral)}
+                            className="flex items-center px-2 py-1.5 bg-primary/20 rounded cursor-pointer"
+                          >
+                            <MdCopyAll className="text-xl text text-primary" />
+                          </button>
+                        }
+
+                        {!referral?.prefix && (
+                          <button
+                            onClick={() => setEditPromoCode(true)}
+                            className="px-2 py-1.5 bg-primary/20 rounded cursor-pointer"
+                          >
+                            <FaEdit className="text-xl text-primary" />
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -129,17 +144,23 @@ const AffiliateManager = ({ player }) => {
                   method="POST"
                   className="flex gap-2 items-end w-full"
                 >
-                  <AppInput
-                    dense
-                    defaultValue={player?.promoCode}
-                    className={"min-w-[130px] w-full uppercase"}
-                    name="promo_code"
-                    required={true}
-                    label="Promo Code"
-                    placeholder="Promo Code"
-                    minLength={4}
-                    maxLength={6}
-                  />
+                  <div className="flex gap-2 w-full">
+                    <div className="flex items-center px-2 py-1.5 bg-primary/20 rounded cursor-pointer">
+                      <IoTicket className="text-xl text text-primary" />
+                    </div>
+                    <AppInput
+                      dense
+                      defaultValue={player?.promoCode}
+                      className={"min-w-[130px] w-full uppercase"}
+                      name="promo_code"
+                      required={true}
+                      // label="Promo Code"
+                      placeholder="Promo Code"
+                      minLength={4}
+                      maxLength={6}
+                    />
+                  </div>
+
                   <div className="flex items-center gap-1">
                     <AppButton dense type="submit" loading={isPending}>
                       Save
