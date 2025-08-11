@@ -17,8 +17,6 @@ const GameDetailPanel = ({ game }) => {
 
   const gameDetail = gameDetailResponse?.data?.data?.game;
 
-  console.log({ gameDetail });
-
   const {
     onlineStatus,
     stakeAmount,
