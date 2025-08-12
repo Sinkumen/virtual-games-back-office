@@ -2,6 +2,7 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaUser } from "react-icons/fa6";
 import { TrophyIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import StatusChip from "@/components/StatusChip";
 
 const ShowMorePlayers = ({ players }) => {
   const popoverRef = useRef(null);
@@ -9,10 +10,10 @@ const ShowMorePlayers = ({ players }) => {
   const [panelWidth, setPanelWidth] = useState(0);
 
   useEffect(() => {
-    if (popoverRef.current) {
+    if ((open, popoverRef.current)) {
       setPanelWidth(popoverRef.current.offsetWidth);
     }
-  }, [popoverRef.current]);
+  }, [open, popoverRef.current]);
 
   return (
     <div className="w-full">
@@ -24,7 +25,7 @@ const ShowMorePlayers = ({ players }) => {
                 <div className="flex items-center justify-between rounded gap-1 bg-gray-600 text-white p-2">
                   <div className="flex items-center gap-1">
                     <FaUser className="h-5 w-5" />
-                    <p>Participants</p>
+                    <p>{players?.length} Participants</p>
                   </div>
                   <FaChevronDown
                     className={`transition-transform duration-200 ${
@@ -47,9 +48,31 @@ const ShowMorePlayers = ({ players }) => {
                     >
                       <div className="flex items-center gap-2 text-gray-600">
                         <FaUser />
-                        <span className="font-medium text-gray-600">
-                          {player.username}
-                        </span>
+                        <div>
+                          <p className="font-bold text-gray-600">
+                            {player.firstName}
+                          </p>
+                          <p className="font-medium text-gray-600">
+                            {player.username}
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm">Cards</p>
+                        <div className="flex items-center gap-1">
+                          {!!player?.confirmedCards && (
+                            <StatusChip
+                              variant={"successDeep"}
+                              status={`${player.confirmedCards}`}
+                            />
+                          )}
+                          {!!player?.cancelledCards && (
+                            <StatusChip
+                              variant={"errorDeep"}
+                              status={`${player.cancelledCards}`}
+                            />
+                          )}
+                        </div>
                       </div>
                       {player.isWinner ? (
                         <span className="flex items-center gap-1 text-green-600 font-medium">

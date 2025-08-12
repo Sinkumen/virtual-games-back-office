@@ -86,7 +86,11 @@ const GameHistory = ({ player }) => {
       </div>
 
       <Divider sx={{ my: 1 }} />
-      <AppTable className="max-h-[400px] " columns={columns} rows={rows} />
+      <AppTable
+        className="max-h-[400px] md:max-h-[700px]"
+        columns={columns}
+        rows={rows}
+      />
       <AppPagination
         hideNextButton
         page={filters.page}

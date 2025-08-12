@@ -23,9 +23,10 @@ const Participants = ({ players = [] }) => {
           <div className={`flex justify-between items-center py-1 px-2 `}>
             <div className={`flex items-center gap-2 text-green-700`}>
               <FaUser />
-              <span className={`font-medium text-green-700`}>
-                {winner.username}
-              </span>
+              <div>
+                <p className="font-bold text-gray-600">{winner.firstName}</p>
+                <p className="font-medium text-gray-600">{winner.username}</p>
+              </div>
             </div>
             <span className="flex items-center gap-1 text-green-600 font-medium">
               <TrophyIcon className="h-5 w-5" />

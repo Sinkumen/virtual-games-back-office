@@ -19,7 +19,7 @@ const PlayerGameHistory = ({ player }) => {
 
       <AppModal
         className={
-          "w-[90%] sm:w-[70%] md:w-[50%]  xl:w-[30%] max-h-[90vh] md:max-h-[80vh] overflow-y-auto"
+          "w-[90%] sm:w-[70%] md:w-[50%]  xl:w-[30%] max-h-[90vh] overflow-y-auto"
         }
         isOpen={isModalOpen}
         closeModal={toggleModal}

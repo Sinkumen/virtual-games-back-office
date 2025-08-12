@@ -7,8 +7,10 @@ import Participants from "./Participants";
 import { FaClock, FaListOl, FaTrophy } from "react-icons/fa6";
 import { FaTimesCircle } from "react-icons/fa";
 import GameDetailSkeleton from "./GameDetailSkeleton";
+import moment from "moment";
+import { IoClose } from "react-icons/io5";
 
-const GameDetailPanel = ({ game, selectedPlayer }) => {
+const GameDetailPanel = ({ game, selectedPlayer, closeModal }) => {
   const { data: gameDetailResponse, isLoading } = useGetGameDetails(game._id);
 
   const gameDetail = gameDetailResponse?.data?.data?.game;
@@ -95,16 +97,54 @@ const GameDetailPanel = ({ game, selectedPlayer }) => {
           </div>
         </div>
 
-        <StatusChip status={game.status} />
+        <div className="flex items-center gap-2">
+          <StatusChip status={game.status} />
+          <button
+            onClick={closeModal}
+            className="bg-gray-400 p-1 rounded-md hover:bg-gray-500"
+          >
+            <IoClose className="text-lg" />
+          </button>
+        </div>
       </div>
 
-      <div>
-        <div className="flex justify-between text-sm text-gray-600 mb-2">
-          <span>{commission}% Commission</span>
-          <span className="flex items-center gap-1">💰 {stakeAmount} ETB</span>
-        </div>
-        <Participants players={players} />
+      <div className="flex justify-between text-sm text-gray-600 mb-2">
+        <span>{commission}% Commission</span>
+        <span className="flex items-center gap-1 text-lg font-bold text-gray-800">
+          💰 {stakeAmount} ETB
+        </span>
       </div>
+
+      <div className="flex items-stretch justify-center gap-2 my-2 flex-wrap">
+        {gameDetail?.createdAt && (
+          <div className="flex-1 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-2 rounded-md flex flex-col">
+            <span>Started</span>
+            <strong c>{moment(gameDetail.createdAt).format("lll")}</strong>
+          </div>
+        )}
+        {gameDetail?.updatedAt && (
+          <div className="flex-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-2 rounded-md flex flex-col ">
+            <span>Ended</span>
+            <strong>{moment(gameDetail.updatedAt).format("lll")}</strong>
+          </div>
+        )}
+        {gameDetail?.createdAt && gameDetail?.updatedAt && (
+          <div className=" md:flex-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-2 rounded-md flex flex-col ">
+            <span>Elapsed</span>
+            <strong>
+              {moment
+                .duration(
+                  moment(gameDetail.updatedAt).diff(gameDetail.createdAt)
+                )
+                .humanize()
+                .replace(/an? hour(s)?/, "h")
+                .replace(/(\d+) minutes?/, "$1m")}
+            </strong>
+          </div>
+        )}
+      </div>
+
+      <Participants players={players} />
 
       {renderGameStatus()}
     </div>

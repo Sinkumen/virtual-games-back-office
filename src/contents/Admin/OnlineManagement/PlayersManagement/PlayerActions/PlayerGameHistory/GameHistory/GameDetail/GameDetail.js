@@ -21,7 +21,11 @@ const GameDetail = ({ game, selectedPlayer }) => {
         isOpen={isOpen}
         closeModal={toggleModal}
       >
-        <GameDetailPanel game={game} selectedPlayer={selectedPlayer} />
+        <GameDetailPanel
+          game={game}
+          selectedPlayer={selectedPlayer}
+          closeModal={toggleModal}
+        />
       </AppModal>
     </div>
   );
