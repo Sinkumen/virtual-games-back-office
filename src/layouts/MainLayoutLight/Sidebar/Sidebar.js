@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 import Image from "next/image";
 import { getAppLogo } from "@/utils/app";
-import { FaShop } from "react-icons/fa6";
+import { FaGamepad, FaShop } from "react-icons/fa6";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -34,6 +34,14 @@ const Sidebar = () => {
   const onlineOptions = [
     {
       id: 1,
+      name: "Manage Games",
+      href: "/online/games",
+      icon: FaGamepad,
+      current: isExactMatch(router.pathname, "/online/games"),
+      accessibleTo: ["admin"],
+    },
+    {
+      id: 2,
       name: "Manage Players",
       href: "/online/players",
       icon: UsersIcon,
@@ -42,7 +50,7 @@ const Sidebar = () => {
     },
 
     {
-      id: 2,
+      id: 3,
       name: "Payment Requests",
       href: "/payment-requests",
       icon: MdPayments,
@@ -50,7 +58,7 @@ const Sidebar = () => {
       accessibleTo: ["admin"],
     },
     {
-      id: 3,
+      id: 4,
       name: "Settings",
       href: "/online/settings",
       icon: MdSettings,
@@ -60,6 +68,14 @@ const Sidebar = () => {
   ];
 
   const bingoOptions = [
+    {
+      id: 2,
+      name: "Bingo Dashboard",
+      href: "/bingo/dashboard",
+      icon: RectangleGroupIcon,
+      current: isExactMatch(router.pathname, "/bingo/dashboard"),
+      accessibleTo: ["admin"],
+    },
     {
       id: 2,
       name: "Manage Rooms",
@@ -235,7 +251,7 @@ const Sidebar = () => {
 
           <li>
             <p className="text-xs font-semibold leading-6 text-gray-400 ml-6">
-              Retail
+              Bingo Retail
             </p>
             <ul role="list" className=" mt-2 space-y-1">
               {retailOptions.map((team) => (

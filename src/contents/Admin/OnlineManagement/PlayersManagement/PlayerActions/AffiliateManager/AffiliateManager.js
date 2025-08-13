@@ -1,6 +1,11 @@
 import AppButton from "@/components/AppButton";
 import useToast from "@/hooks/useToast";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverButton,
+  PopoverPanel,
+} from "@headlessui/react";
 import React, { useState } from "react";
 import { FaTelegram } from "react-icons/fa6";
 import { MdCopyAll } from "react-icons/md";
@@ -71,6 +76,7 @@ const AffiliateManager = ({ player }) => {
                 Affiliate
               </button>
             </PopoverButton>
+            <PopoverBackdrop className="fixed inset-0" />
             <PopoverPanel
               anchor={anchor}
               className="flex flex-col bg-white shadow-2xl p-3 rounded-md z-10"

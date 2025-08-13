@@ -8,6 +8,7 @@ import moment from "moment";
 import React, { useState } from "react";
 import { FaReceipt } from "react-icons/fa6";
 import GameDetail from "./GameDetail";
+import StatusChip from "@/components/StatusChip";
 
 const GameHistory = ({ player }) => {
   const [filters, setFilters] = useState({
@@ -60,13 +61,11 @@ const GameHistory = ({ player }) => {
         </div>
       </div>,
       <div key={game.id} className="flex items-center gap-2">
-        <div
-          className={`capitalize ${chipColor(game.status).textColor} ${
-            chipColor(game.status).bgColor
-          } p-1 px-2 rounded-md text-center`}
-        >
-          {game.status.replace("_", " ")}
-        </div>
+        <StatusChip status={game.status} />
+        {!!game.winAmount && (
+          <StatusChip variant={"success"} status={`${game.winAmount} ETB`} />
+        )}
+
         {game?.provider === "abol" && (
           <GameDetail game={game} selectedPlayer={player} />
         )}

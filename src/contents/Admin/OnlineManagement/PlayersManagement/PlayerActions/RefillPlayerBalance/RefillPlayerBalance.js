@@ -3,7 +3,12 @@ import AppButton from "@/components/AppButton";
 import AppInput from "@/components/AppInput";
 import { ERROR } from "@/constants/toast";
 import useToast from "@/hooks/useToast";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverButton,
+  PopoverPanel,
+} from "@headlessui/react";
 import React from "react";
 import { FaGasPump } from "react-icons/fa6";
 
@@ -36,6 +41,7 @@ const RefillPlayerBalance = ({ player }) => {
               Refill Balance
             </button>
           </PopoverButton>
+          <PopoverBackdrop className="fixed inset-0" />
           <PopoverPanel
             anchor="bottom"
             className="flex flex-col bg-white shadow-2xl p-3 rounded-md"

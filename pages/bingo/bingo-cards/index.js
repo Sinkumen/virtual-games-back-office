@@ -1,4 +1,4 @@
-import BingoCards from "@/contents/Admin/OnlineManagement/BingoCards";
+import BingoCards from "@/contents/Admin/OnlineManagement/Bingo/BingoCards";
 import MainLayoutLight from "@/layouts/MainLayoutLight";
 import React from "react";
 

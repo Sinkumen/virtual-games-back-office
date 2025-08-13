@@ -1,4 +1,4 @@
-import RoomManagement from "@/contents/Admin/OnlineManagement/RoomManagement";
+import RoomManagement from "@/contents/Admin/OnlineManagement/Bingo/RoomManagement";
 import MainLayoutLight from "@/layouts/MainLayoutLight";
 import React from "react";
 
