@@ -33,11 +33,11 @@ const DateRangePicker = ({ onChange = () => {} }) => {
 
   return (
     <Popover className="relative">
-      {({ open, close }) => (
+      {({ close }) => (
         <>
           <PopoverButton
             onClick={handleOpen}
-            className="w-64 text-left px-4 py-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-white rounded-lg ring-1 ring-gray-300 mb-2 focus:ring-1 focus:ring-primary"
+            className=" text-left px-4 py-3 bg-white dark:bg-gray-900 text-gray-800 dark:text-white rounded-lg ring-1 ring-gray-300 mb-2 focus:outline-none focus:ring-1 focus:ring-primary"
           >
             <p className="text-xs text-primary">Date Range</p>
             <span className="text-lg font-semibold">
@@ -46,7 +46,7 @@ const DateRangePicker = ({ onChange = () => {} }) => {
             </span>
           </PopoverButton>
 
-          <PopoverPanel className="absolute z-10 mt-2">
+          <PopoverPanel className="absolute z-10 ring-1 ring-gray-200 rounded-lg right-0 min-w-max">
             <DateRangePickerComponent
               showTwoMonths={true}
               startDate={dateRange.startDate}

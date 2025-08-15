@@ -64,11 +64,16 @@ const Dashboard = () => {
 
   return (
     <div>
-      Dashboard
-      <div>
-        <DateRangePicker
-          onChange={(range) => setFilters({ ...filters, ...range })}
-        />
+      <div className="flex items-center justify-between mb-2">
+        <div>
+          <p className="text-2xl font-semibold">Dashboard</p>
+          <p className="text-sm text-gray-500">Overview of key metrics</p>
+        </div>
+        <div>
+          <DateRangePicker
+            onChange={(range) => setFilters({ ...filters, ...range })}
+          />
+        </div>
       </div>
       {isLoading ? (
         <DashboardSkeleton />

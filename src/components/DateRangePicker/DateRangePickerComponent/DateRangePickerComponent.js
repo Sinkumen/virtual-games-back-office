@@ -48,7 +48,7 @@ const DateRangePickerComponent = ({
   const containerClasses = `
     font-sans p-4 md:p-8 rounded-lg shadow-2xl mx-auto
     bg-white text-gray-800
-    dark:bg-gray-900 dark:text-white z-[9999]
+    dark:bg-gray-900 dark:text-white 
   `;
 
   return (
