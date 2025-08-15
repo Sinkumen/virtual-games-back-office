@@ -1,7 +1,7 @@
 import {
   useGetTopPlayers,
   useGetTopTransactions,
-} from "@/api/services/reportServices";
+} from "@/api/services/reportServices/reportServices";
 import AppTable from "@/components/AppTable";
 import React, { useState } from "react";
 import AppDateRangePicker from "@/components/AppDateRangePicker";

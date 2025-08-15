@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import AppTable from "@/components/AppTable";
-import { useGetOverview } from "@/api/services/reportServices";
+import { useGetOverview } from "@/api/services/reportServices/reportServices";
 
 import AggregateCard from "@/components/Dashboard/AggregateCard";
 import { defaultDateRange } from "@/utils/parseFilters";

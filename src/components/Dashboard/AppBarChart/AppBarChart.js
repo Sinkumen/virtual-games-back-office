@@ -8,46 +8,103 @@ const AppBarChart = ({ categories = [], series = [] }) => {
   const primaryColor = getTenantColor(tenantId);
   const primaryLightColor = getTenantLightColor(tenantId);
 
-  const [chartWidth, setChartWidth] = useState(400);
+  const [width, setWidth] = useState("100%");
+  const [height, setHeight] = useState(450);
 
-  // Dynamically adjust chart width based on window size
   useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth > 768 ? 400 : 350; // 90% of viewport width on mobile
-      setChartWidth(width);
+      if (window.innerWidth < 768) {
+        const barWidth = 40; // Adjust this value to change the width of each bar
+        const calculatedWidth = categories.length * barWidth * series.length;
+        setWidth(Math.max(calculatedWidth, 350)); // Ensure a minimum width
+        setHeight(250);
+      } else {
+        setWidth("100%");
+        setHeight(450);
+      }
     };
 
-    handleResize(); // Set initial width
     window.addEventListener("resize", handleResize);
+    handleResize();
+
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [categories, series]);
 
   const barOptions = useMemo(
     () => ({
-      chart: { id: "basic-bar" },
+      chart: {
+        id: "basic-bar",
+        toolbar: {
+          show: false,
+        },
+      },
       colors: [primaryColor, primaryLightColor],
       xaxis: {
         categories,
+
+        axisBorder: {
+          show: true,
+        },
+        axisTicks: {
+          show: false,
+        },
+      },
+      yaxis: {
+        axisBorder: {
+          show: true,
+        },
+        axisTicks: {
+          show: false,
+        },
       },
       plotOptions: {
         bar: {
-          borderRadiusApplication: "end",
           horizontal: false,
+          columnWidth: "50%",
+          // borderRadius: 5,
+          borderRadiusApplication: "end",
         },
       },
+      dataLabels: {
+        enabled: false,
+      },
+      grid: {
+        show: true,
+        borderColor: "#e0e0e0",
+        strokeDashArray: 5,
+        xaxis: {
+          lines: {
+            show: true,
+          },
+        },
+      },
+      tooltip: {
+        theme: "light",
+        y: {
+          formatter: (val) => `${val}`,
+        },
+      },
+      legend: {
+        show: true,
+        horizontalAlign: "left",
+      },
     }),
-    [categories]
+    [categories, primaryColor, primaryLightColor]
   );
 
   const barSeries = useMemo(() => series, [series]);
 
   return (
-    <div className="mixed-chart">
+    <div
+      className="mixed-chart"
+      style={{ overflowX: width === "100%" ? "hidden" : "auto" }}
+    >
       <Chart
         options={barOptions}
         series={barSeries}
         type="bar"
-        width={chartWidth}
+        height={height}
+        width={width}
       />
     </div>
   );

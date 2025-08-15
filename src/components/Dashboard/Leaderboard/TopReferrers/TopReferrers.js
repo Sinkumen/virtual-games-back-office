@@ -1,4 +1,4 @@
-import { useGetTopReferrers } from "@/api/services/reportServices";
+import { useGetTopReferrers } from "@/api/services/reportServices/reportServices";
 import AppTable from "@/components/AppTable";
 import React, { useState } from "react";
 import AppSelect from "@/components/AppSelect";
