@@ -34,7 +34,7 @@ const DateRangePickerComponent = ({
   };
 
   const handleClear = () => {
-    handleReset();
+    onChange({ startDate: null, endDate: null, activePreset: null });
   };
 
   const handleOk = () => {

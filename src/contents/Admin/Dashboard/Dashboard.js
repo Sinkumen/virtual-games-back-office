@@ -4,9 +4,17 @@ import WalletTransactionTrend from "./Trend/WalletTransactionTrend";
 import { useGetGeneralOverview } from "@/api/services/reportServices/reportServices";
 import { dateRanges } from "@/dataset/dateRanges";
 import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
-import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import {
+  FaChartLine,
+  FaGift,
+  FaSackDollar,
+  FaUserCheck,
+  FaUsers,
+} from "react-icons/fa6";
 import AggregateCard from "@/components/Dashboard/AggregateCard";
 import DateRangePicker from "@/components/DateRangePicker";
+import { IoGameController } from "react-icons/io5";
+import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
 
 const Dashboard = () => {
   const [filters, setFilters] = useState(dateRanges[0]);
@@ -17,50 +25,48 @@ const Dashboard = () => {
   const firstOverview = [
     {
       title: "Revenue",
-      value: `${overview?.totalRevenue} Birr`,
-      icon: FaMoneyBillTrendUp,
+      value: `${overview?.totalRevenue?.toFixed(2)} Birr`,
+      icon: FaSackDollar,
     },
     {
       title: "Total Sales",
       value: `${overview?.totalSales} Birr`,
-      icon: FaMoneyBillTrendUp,
+      icon: FaChartLine,
     },
     {
       title: "Giveaway",
       value: `${(overview?.totalGiveaway || 0).toFixed(2)} Birr`,
-      icon: FaMoneyBillTrendUp,
+      icon: FaGift,
       breakdown: overview?.giveawayReport?.giveawayBreakdown,
     },
     {
       title: "Total Games",
       value: overview?.totalGames,
-      icon: FaMoneyBillTrendUp,
+      icon: IoGameController,
     },
     {
       title: "Total Deposit",
       value: `${overview?.depositReport?.totalDeposit} Birr`,
-      icon: FaMoneyBillTrendUp,
+      icon: FaArrowCircleDown,
       breakdown: overview?.depositReport?.depositBreakdown,
     },
     {
       title: "Total Withdrawals",
       value: `${overview?.withdrawalReport?.totalWithdrawal} Birr`,
-      icon: FaMoneyBillTrendUp,
+      icon: FaArrowCircleUp,
       breakdown: overview?.withdrawalReport?.withdrawalBreakdown,
     },
     {
       title: "Total Players",
       value: overview?.totalUsers,
-      icon: FaMoneyBillTrendUp,
+      icon: FaUsers,
     },
     {
       title: "Active Players",
       value: overview?.totalActiveUsers,
-      icon: FaMoneyBillTrendUp,
+      icon: FaUserCheck,
     },
   ];
-
-  console.log({ overview });
 
   return (
     <div>

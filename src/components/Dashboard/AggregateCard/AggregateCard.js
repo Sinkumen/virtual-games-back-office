@@ -32,7 +32,7 @@ const AggregateCard = ({ aggregateReport }) => {
               }`}
             >
               <div className="bg-primary/10 border-[1px] border-primary/70 p-2 sm:p-4 rounded-lg aspect-square flex items-center justify-center">
-                <overview.icon className="text-primary text-sm" />
+                <overview.icon className="text-primary text-xl" />
               </div>
 
               <div>
