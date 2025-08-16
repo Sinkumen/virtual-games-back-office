@@ -88,7 +88,7 @@ const BingoDashboard = () => {
   return (
     <div>
       {/* <DateFilter filters={filters} setFilters={setFilters} /> */}
-      <div className="flex items-center justify-between  mb-3">
+      <div className="flex items-center justify-between  mb-2">
         <div>
           <p className="text-2xl font-semibold">Bingo Dashboard</p>
           <p className="text-sm text-gray-500">Overview of bingo game</p>
