@@ -15,6 +15,7 @@ import AggregateCard from "@/components/Dashboard/AggregateCard";
 import DateRangePicker from "@/components/DateRangePicker";
 import { IoGameController } from "react-icons/io5";
 import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
+import { formatNumberWithCommas } from "@/utils/number";
 
 const Dashboard = () => {
   const [filters, setFilters] = useState(dateRanges[0]);
@@ -35,17 +36,17 @@ const Dashboard = () => {
   const firstOverview = [
     {
       title: "Revenue",
-      value: `${overview?.totalRevenue?.toFixed(2)} Birr`,
+      value: `${formatNumberWithCommas(overview?.totalRevenue)} Birr`,
       icon: FaSackDollar,
     },
     {
       title: "Sales",
-      value: `${overview?.totalSales} Birr`,
+      value: `${formatNumberWithCommas(overview?.totalSales)} Birr`,
       icon: FaChartLine,
     },
     {
       title: "Giveaway",
-      value: `${(overview?.totalGiveaway || 0).toFixed(2)} Birr`,
+      value: `${formatNumberWithCommas(overview?.totalGiveaway)} Birr`,
       icon: FaGift,
       breakdown: formatBreakdown(overview?.giveawayBreakdown),
     },
@@ -56,13 +57,17 @@ const Dashboard = () => {
     },
     {
       title: "Deposit",
-      value: `${overview?.depositReport?.totalDeposit} Birr`,
+      value: `${formatNumberWithCommas(
+        overview?.depositReport?.totalDeposit
+      )} Birr`,
       icon: FaArrowCircleDown,
       breakdown: formatBreakdown(overview?.depositReport?.depositBreakdown),
     },
     {
       title: "Withdrawals",
-      value: `${overview?.withdrawalReport?.totalWithdrawal} Birr`,
+      value: `${formatNumberWithCommas(
+        overview?.withdrawalReport?.totalWithdrawal
+      )} Birr`,
       icon: FaArrowCircleUp,
       breakdown: formatBreakdown(
         overview?.withdrawalReport?.withdrawalBreakdown

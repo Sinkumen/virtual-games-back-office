@@ -1,6 +1,7 @@
 import AppSelect from "@/components/AppSelect";
 import AppBarChart from "@/components/Dashboard/AppBarChart";
 import AppDonutChart from "@/components/Dashboard/AppDonutChart";
+import { formatNumberWithCommas } from "@/utils/number";
 import React, { useMemo, useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
@@ -12,12 +13,16 @@ const GameSpecificReports = ({ overview }) => {
   const firstOverview = [
     {
       title: `${gameType?.id === "online" ? "Online" : "Retail"} Total Sales`,
-      value: `${report?.aggregate?.totalSales || 0} Birr`,
+      value: `${
+        formatNumberWithCommas(report?.aggregate?.totalSales) || 0
+      } Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {
       title: `${gameType?.id === "online" ? "Online" : "Retail"} Revenue`,
-      value: `${report?.aggregate?.totalRevenue || 0} Birr`,
+      value: `${
+        formatNumberWithCommas(report?.aggregate?.totalRevenue) || 0
+      } Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {

@@ -2,23 +2,18 @@ import React, { useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import AppTable from "@/components/AppTable";
 import { useGetOverview } from "@/api/services/reportServices/reportServices";
-
 import AggregateCard from "@/components/Dashboard/AggregateCard";
 import { defaultDateRange } from "@/utils/parseFilters";
-import AppDatePicker from "@/components/AppDatePicker";
-import AppSelect from "@/components/AppSelect";
-import { CalendarDaysIcon } from "@heroicons/react/20/solid";
-import { dateRanges } from "@/dataset/dateRanges";
-import moment from "moment";
 import { Divider } from "@mui/material";
 import GameSpecificReports from "./GameSpecificReports";
 import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
 import Leaderboard from "@/components/Dashboard/Leaderboard";
+import { formatNumberWithCommas } from "@/utils/number";
+import DateFilter from "./DateFilter";
+import DateRangePicker from "@/components/DateRangePicker";
 
 const BingoDashboard = () => {
   const [filters, setFilters] = useState(defaultDateRange);
-  const [dateRange, setDateRange] = useState(dateRanges[0]);
-
   const { data: overviewResponse, isLoading, error } = useGetOverview(filters);
 
   const overview = overviewResponse?.data?.data;
@@ -26,19 +21,19 @@ const BingoDashboard = () => {
   const firstOverview = [
     {
       title: "Revenue",
-      value: `${aggregateOverview?.totalRevenue} Birr`,
+      value: `${formatNumberWithCommas(aggregateOverview?.totalRevenue)} Birr`,
       icon: FaMoneyBillTrendUp,
       // alt: aggregateOverview?.totalRevenue - overview?.totalGiveaway,
       // altLabel: "Net",
     },
     {
       title: "Total Sales",
-      value: `${aggregateOverview?.totalSales} Birr`,
+      value: `${formatNumberWithCommas(aggregateOverview?.totalSales)} Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {
       title: "Giveaway",
-      value: `${(overview?.totalGiveaway || 0).toFixed(2)} Birr`,
+      value: `${formatNumberWithCommas(overview?.totalGiveaway)} Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {
@@ -50,12 +45,14 @@ const BingoDashboard = () => {
     },
     {
       title: "Total Deposit",
-      value: `${overview?.totalApprovedDeposit} Birr`,
+      value: `${formatNumberWithCommas(overview?.totalApprovedDeposit)} Birr`,
       icon: FaMoneyBillTrendUp,
     },
     {
       title: "Total Withdrawals",
-      value: `${overview?.totalApprovedWithdrawal} Birr`,
+      value: `${formatNumberWithCommas(
+        overview?.totalApprovedWithdrawal
+      )} Birr`,
 
       icon: FaMoneyBillTrendUp,
     },
@@ -90,50 +87,15 @@ const BingoDashboard = () => {
 
   return (
     <div>
-      <div className=" mx-0 rounded-lg flex gap-2 w-full flex-col xl:flex-row mb-2">
-        <AppSelect
-          name="Date"
-          Icon={CalendarDaysIcon}
-          options={dateRanges}
-          placeholder="Select date range."
-          value={dateRange}
-          onChange={(value) => {
-            setDateRange(value);
-            setFilters((prev) => ({
-              ...prev,
-              startDate: moment(value.startDate).startOf("day").utc().format(),
-              endDate: moment(value.endDate).endOf("day").utc().format(),
-            }));
-          }}
-        />
-        <div className="flex gap-2 flex-2">
-          <AppDatePicker
-            value={moment(filters?.startDate)._d}
-            placeholder="Select start date"
-            onChange={(newDate) => {
-              setFilters((prev) => ({
-                ...prev,
-                startDate: moment(newDate).startOf("day").utc().format(),
-              }));
-              setDateRange(dateRanges.at(-1));
-            }}
-            name={"from"}
-            label={"From"}
-          />
-          <AppDatePicker
-            value={moment(filters?.endDate)._d}
-            placeholder="Select end date"
-            onChange={(newDate) => {
-              setFilters((prev) => ({
-                ...prev,
-                endDate: moment(newDate).endOf("day").utc().format(),
-              }));
-              setDateRange(dateRanges.at(-1));
-            }}
-            name={"to"}
-            label={"To"}
-          />
+      {/* <DateFilter filters={filters} setFilters={setFilters} /> */}
+      <div className="flex items-center justify-between  mb-3">
+        <div>
+          <p className="text-2xl font-semibold">Bingo Dashboard</p>
+          <p className="text-sm text-gray-500">Overview of bingo game</p>
         </div>
+        <DateRangePicker
+          onChange={(range) => setFilters({ ...filters, ...range })}
+        />
       </div>
       {isLoading ? (
         <DashboardSkeleton />
