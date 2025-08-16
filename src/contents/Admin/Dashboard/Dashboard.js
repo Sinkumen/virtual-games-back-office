@@ -22,6 +22,16 @@ const Dashboard = () => {
 
   const overview = overviewResponse?.data?.data;
 
+  const formatBreakdown = (breakdown) => {
+    if (!breakdown) return [];
+    return Object.entries(breakdown).map(([key, value]) => ({
+      label: key
+        .replace(/([A-Z])/g, " $1")
+        .replace(/^./, (str) => str.toUpperCase()),
+      value,
+    }));
+  };
+
   const firstOverview = [
     {
       title: "Revenue",
@@ -29,7 +39,7 @@ const Dashboard = () => {
       icon: FaSackDollar,
     },
     {
-      title: "Total Sales",
+      title: "Sales",
       value: `${overview?.totalSales} Birr`,
       icon: FaChartLine,
     },
@@ -37,24 +47,26 @@ const Dashboard = () => {
       title: "Giveaway",
       value: `${(overview?.totalGiveaway || 0).toFixed(2)} Birr`,
       icon: FaGift,
-      breakdown: overview?.giveawayReport?.giveawayBreakdown,
+      breakdown: formatBreakdown(overview?.giveawayBreakdown),
     },
     {
-      title: "Total Games",
+      title: "Gameplay",
       value: overview?.totalGames,
       icon: IoGameController,
     },
     {
-      title: "Total Deposit",
+      title: "Deposit",
       value: `${overview?.depositReport?.totalDeposit} Birr`,
       icon: FaArrowCircleDown,
-      breakdown: overview?.depositReport?.depositBreakdown,
+      breakdown: formatBreakdown(overview?.depositReport?.depositBreakdown),
     },
     {
-      title: "Total Withdrawals",
+      title: "Withdrawals",
       value: `${overview?.withdrawalReport?.totalWithdrawal} Birr`,
       icon: FaArrowCircleUp,
-      breakdown: overview?.withdrawalReport?.withdrawalBreakdown,
+      breakdown: formatBreakdown(
+        overview?.withdrawalReport?.withdrawalBreakdown
+      ),
     },
     {
       title: "Total Players",

@@ -1,5 +1,6 @@
 import { Tooltip } from "@mui/material";
 import React from "react";
+import BreakdownPopover from "./BreakdownPopover";
 
 const AggregateCard = ({ aggregateReport }) => {
   return (
@@ -35,12 +36,17 @@ const AggregateCard = ({ aggregateReport }) => {
                 <overview.icon className="text-primary text-xl" />
               </div>
 
-              <div>
-                <Tooltip title={overview.toolTip} arrow>
-                  <p className="text-gray-400 font-bold text-xs sm:text-sm">
-                    {overview.title}
-                  </p>
-                </Tooltip>
+              <div className="w-full">
+                <div className="flex items-center justify-between w-full gap-2">
+                  <Tooltip title={overview.toolTip} arrow>
+                    <p className="text-gray-400 font-bold text-xs sm:text-sm">
+                      {overview.title}
+                    </p>
+                  </Tooltip>
+                  {overview.breakdown && (
+                    <BreakdownPopover breakdown={overview.breakdown} />
+                  )}
+                </div>
                 <div className="flex gap-2 items-center text-sm">
                   <p className="font-black text-base md:text-xl lg:text-2xl">
                     {overview.value}
